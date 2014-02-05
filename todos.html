@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Todos</title> 
+		<link href="todos.css" type="text/css" rel="stylesheet" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+		$(document).ready(function() {
+			var count = 0;  //track number of todos
+			var submit = $("#button").click(function() {
+				count++;
+				var todoButton = $(document.createElement("input"));
+				todoButton.attr({   //set delete button attributes
+					type : "submit",
+					value : "Delete",
+					id : count,
+					class : "deleter"
+				});
+				var newTodo = $("#input").val();
+				var newTodoPar = $(document.createElement('p')); //create and add new paragraph with delete button
+				newTodoPar.text(newTodo);
+				newTodoPar.addClass("item");
+				newTodoPar.append(todoButton);
+				$("#list").append(newTodoPar);
+				var deleteTodo = $(".deleter").click(function() {
+					$(this).parent().hide();
+				}); //end delete todo
+			}); //end add new todo
+		}); //end ready
+		</script>
+	</head> 
+	<body> 
+		<header id="header">
+		</header>
+			<section id="main">
+				<p class="quote left" id="firstQuote"></p>
+				<section id="todoForm">
+					<h3>Your Question:</h3>
+					<div><input id="input" name="todo" type="text" size="50" autofocus="autofocus" /></div>
+					<div><input id="button" type="submit" value="Add" /></div>
+				</section>
+				<article id="list">
+
+				</article>
+			</section>
+		<footer id="footer">
+			<article id="insidefooter"></article>
+		</footer>
+	</body>
+</html>
